@@ -8,11 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
-
-
 
 @Entity
 @Table(name = "fighter")
@@ -112,7 +111,7 @@ public class Fighter {
 	}
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getId() {
 		return id;
 	}
@@ -151,8 +150,7 @@ public class Fighter {
 		this.categoria = categoria;
 	}
 
-
-	//@NotEmpty(message = "Camapo quantidade de grau não pode ser vazio")
+	@NotNull(message = "Camapo quantidade de grau não pode ser vazio")
 	@Column(name = "qtd_grau", nullable = false)
 	public Integer getGrau() {
 		return grau;
@@ -162,7 +160,7 @@ public class Fighter {
 		this.grau = grau;
 	}
 
-	//@NotEmpty(message = "Campo idade não pode ser vazio")
+	@NotNull(message = "Campo idade não pode ser vazio")
 	@Column(name = "idade", nullable = false)
 	public Integer getIdade() {
 		return idade;
@@ -172,7 +170,7 @@ public class Fighter {
 		this.idade = idade;
 	}
 
-	//@NotEmpty(message = "Campo peso não pode ser vazio")
+	@NotNull(message = "Campo peso não pode ser vazio")
 	@Column(name = "peso", nullable = false)
 	public Double getPeso() {
 		return peso;
