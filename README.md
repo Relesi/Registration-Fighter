@@ -14,7 +14,7 @@ The RESTful Modernization Biometric API contains the following features:
 ### How to run the application
 Be sure to have Maven installed and added to the PATH of your operating system, just like Git.
 
-git clone https://github.com/Relesi/
+git clone https://github.com/Relesi/Registration-Fighter
 
 mvn spring-boot: run
 Access the endpoints through the http: // localhost: 8080 url
