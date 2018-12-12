@@ -75,7 +75,7 @@ public class FighterController {
 
 		fighterRepository.delete(fighter);
 		Map<String, Boolean> response = new HashMap<>();
-		response.put("Deletando Lutador com Id : " + fighterId,  Boolean.TRUE);
+		response.put("Deletando Lutador com Id : " + fighterId, Boolean.TRUE);
 		return response;
 
 	}
