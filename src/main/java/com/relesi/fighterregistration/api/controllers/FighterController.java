@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,19 +22,26 @@ import com.relesi.fighterregistration.api.entities.Fighter;
 import com.relesi.fighterregistration.api.repositories.FighterRepository;
 import com.relesi.fighterregistration.api.resources.ResourceNotFoundException;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/ms")
+@Api(value="API REST Managmente Fighter ")
+@CrossOrigin(origins = "*")
 public class FighterController {
 
 	@Autowired
 	private FighterRepository fighterRepository;
 
 	@GetMapping("/fighter")
+	@ApiOperation(value = "Retorna um fighter")
 	public List<Fighter> getAllFighter() {
 		return fighterRepository.findAll();
 	}
 
 	@GetMapping("/fighter/{id}")
+	@ApiOperation(value = "Retornando lista de fighters")
 	public ResponseEntity<Fighter> buscarLutadorPorId(@PathVariable(value = "id") Long fighterId)
 			throws ResourceNotFoundException {
 
@@ -43,11 +51,13 @@ public class FighterController {
 	}
 
 	@PostMapping("/fighter")
+	@ApiOperation(value = "Cadastrando fighters")
 	public Fighter cadastrarLutador(@Valid @RequestBody Fighter fighter) {
 		return fighterRepository.save(fighter);
 	}
 
 	@PutMapping("/fighter/{id}")
+	@ApiOperation(value = "Alterando os fighters")
 	public ResponseEntity<Fighter> atualizarLutador(@PathVariable(value = "id") Long fighterId,
 			@Valid @RequestBody Fighter fighterDatails) throws ResourceNotFoundException {
 		Fighter fighter = fighterRepository.findById(fighterId).orElseThrow(
@@ -68,6 +78,7 @@ public class FighterController {
 	}
 
 	@DeleteMapping("/fighter/{id}")
+	@ApiOperation(value = "Deletando os fighters")
 	public Map<String, Boolean> deletandoLutador(@PathVariable(value = "id") Long fighterId)
 			throws ResourceNotFoundException {
 		Fighter fighter = fighterRepository.findById(fighterId).orElseThrow(
